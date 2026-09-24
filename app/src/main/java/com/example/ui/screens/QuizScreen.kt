@@ -106,6 +106,11 @@ fun QuizScreen(
     var selectedReportOption by remember { mutableStateOf<String?>(null) }
     var reportCommentText by remember { mutableStateOf("") }
 
+    // Instant local selection state synced with question index and parent selection
+    var localSelectedOption by remember(currentIndex, selectedAnswerIndex) {
+        mutableStateOf(selectedAnswerIndex)
+    }
+
     val reportOptions = listOf(
         "Wrong Answer / Options",
         "Typographical / Spelling Error",
@@ -600,70 +605,73 @@ Current Category / Level: $categoryOrLevel
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            // Radio Option choices: generous vertical touch spacing (minimum 12px gap),
-            // responsive tap targets (min 48dp), active border/background highlight when selected.
+            // Radio Option choices: clean selection handling, responsive 100% tap targets,
+            // strict borders (2dp active blue #2563EB, 1dp clean #E2E8F0 unselected, 0dp elevation),
+            // and custom radio indicator (#2563EB filled vs #CBD5E1 circle).
             // NO AUTO-ADVANCE on tap: selection only highlights; user must tap "Next →" to proceed.
             val optionLetters = listOf("A", "B", "C", "D")
             question.options.forEachIndexed { index, optionText ->
                 val letter = optionLetters.getOrElse(index) { "" }
-                val isSelected = selectedAnswerIndex == index
-                val optionBg = if (isSelected) Color(0xFFEEF4FF) else SurfacePureWhite
-                val optionBorder = if (isSelected) RoyalBlue else Color(0xFFE2E8F0)
+                val isSelected = localSelectedOption == index
+                val optionBg = if (isSelected) Color(0xFFF0F7FF) else Color.White
+                val optionBorderColor = if (isSelected) Color(0xFF2563EB) else Color(0xFFE2E8F0)
                 val borderWidth = if (isSelected) 2.dp else 1.dp
-                val textColor = if (isSelected) NavyPrimary else TextPrimaryNavy
 
-                Card(
+                Surface(
+                    onClick = {
+                        localSelectedOption = index
+                        onSelectAnswer(index)
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 14.dp) // Minimum 12px gap
-                        .clip(RoundedCornerShape(14.dp))
-                        .clickable {
-                            // Highlights selection; does NOT auto-advance
-                            onSelectAnswer(index)
-                        }
+                        .padding(bottom = 12.dp) // Clean 10-12dp gap between options
                         .testTag("quiz_option_$index"),
-                    shape = RoundedCornerShape(14.dp),
-                    colors = CardDefaults.cardColors(containerColor = optionBg),
-                    border = BorderStroke(borderWidth, optionBorder),
-                    elevation = CardDefaults.cardElevation(defaultElevation = if (isSelected) 2.dp else 1.dp)
+                    shape = RoundedCornerShape(12.dp),
+                    color = optionBg,
+                    border = BorderStroke(borderWidth, optionBorderColor),
+                    shadowElevation = 0.dp,
+                    tonalElevation = 0.dp
                 ) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 18.dp, vertical = 18.dp),
+                            .padding(horizontal = 16.dp, vertical = 14.dp), // paddingVertical: 14, paddingHorizontal: 16
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
+                        // Left side option text (flex: 1, fontSize: 14.5, fontWeight: '600', color: '#1E293B')
                         Text(
                             text = "$letter. $optionText",
                             style = MaterialTheme.typography.bodyLarge.copy(
-                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
-                                color = textColor,
-                                fontSize = 16.sp,
-                                lineHeight = 22.sp
+                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.SemiBold,
+                                color = Color(0xFF1E293B),
+                                fontSize = 14.5.sp,
+                                lineHeight = 20.sp
                             ),
                             modifier = Modifier.weight(1f)
                         )
 
                         Spacer(modifier = Modifier.width(12.dp))
 
-                        // Radio style selection indicator
+                        // Right side custom radio button
+                        // isSelected: Filled blue circle (#2563EB) with white inner dot
+                        // !isSelected: Empty circle with clean border (#CBD5E1)
                         Box(
                             modifier = Modifier
-                                .size(24.dp)
+                                .size(22.dp)
                                 .clip(CircleShape)
-                                .background(if (isSelected) RoyalBlue else Color.Transparent)
-                                .then(
-                                    if (!isSelected) {
-                                        Modifier.border(BorderStroke(1.5.dp, Color(0xFF94A3B8)), CircleShape)
-                                    } else Modifier
+                                .background(if (isSelected) Color(0xFF2563EB) else Color.White)
+                                .border(
+                                    width = if (isSelected) 0.dp else 1.5.dp,
+                                    color = if (isSelected) Color.Transparent else Color(0xFFCBD5E1),
+                                    shape = CircleShape
                                 ),
                             contentAlignment = Alignment.Center
                         ) {
                             if (isSelected) {
                                 Box(
                                     modifier = Modifier
-                                        .size(10.dp)
+                                        .size(9.dp)
                                         .clip(CircleShape)
                                         .background(Color.White)
                                 )

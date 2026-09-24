@@ -109,21 +109,42 @@ class QuizLogicUnitTest {
     }
 
     @Test
-    fun verify_all_questions_have_valid_10_digit_numeric_uid() {
+    fun verify_teacher_word_formation_question_573062860() {
+        val level4En = ReasoningLevelsRepository.getQuestionsForLevel(4, "en")
+        val questionEn = level4En.firstOrNull { it.uid == "573062860" || it.questionText.contains("TEACHER") }
+        assertNotNull(questionEn)
+        assertEquals("573062860", questionEn!!.effectiveUid)
+        assertEquals("Which word cannot be made from the word 'TEACHER'?", questionEn.questionText)
+        assertEquals(listOf("CHEATER", "REACH", "CHAIR", "HEAR"), questionEn.options)
+        assertEquals(2, questionEn.correctOptionIndex)
+        assertEquals("CHAIR", questionEn.options[questionEn.correctOptionIndex])
+        assertEquals("The letter 'I' in 'CHAIR' is not present in the word 'TEACHER'.", questionEn.explanation)
+        assertEquals("C. CHAIR", questionEn.getFormattedOption(questionEn.correctOptionIndex))
+
+        val level4Hi = ReasoningLevelsRepository.getQuestionsForLevel(4, "hi")
+        val questionHi = level4Hi.firstOrNull { it.uid == "573062860" || it.questionText.contains("TEACHER") }
+        assertNotNull(questionHi)
+        assertEquals("573062860", questionHi!!.effectiveUid)
+        assertEquals(listOf("CHEATER", "REACH", "CHAIR", "HEAR"), questionHi.options)
+        assertEquals(2, questionHi.correctOptionIndex)
+        assertEquals("CHAIR", questionHi.options[questionHi.correctOptionIndex])
+        assertEquals("C. CHAIR", questionHi.getFormattedOption(questionHi.correctOptionIndex))
+    }
+
+    @Test
+    fun verify_all_questions_have_valid_numeric_uid() {
         for (lvl in 1..10) {
             val enList = ReasoningLevelsRepository.getQuestionsForLevel(lvl, "en")
             val hiList = ReasoningLevelsRepository.getQuestionsForLevel(lvl, "hi")
 
             enList.forEach { q ->
                 val uid = q.effectiveUid
-                assertEquals("UID must be exactly 10 digits for EN Q${q.id} in level $lvl", 10, uid.length)
-                assertTrue("UID must contain only digits: $uid", uid.all { it.isDigit() })
+                assertTrue("UID must contain only digits: $uid", uid.isNotBlank() && uid.all { it.isDigit() })
             }
 
             hiList.forEach { q ->
                 val uid = q.effectiveUid
-                assertEquals("UID must be exactly 10 digits for HI Q${q.id} in level $lvl", 10, uid.length)
-                assertTrue("UID must contain only digits: $uid", uid.all { it.isDigit() })
+                assertTrue("UID must contain only digits: $uid", uid.isNotBlank() && uid.all { it.isDigit() })
             }
         }
     }

@@ -31,9 +31,10 @@ object Level4Questions {
         Question(
             id = 4,
             questionText = "Which word cannot be made from the word 'TEACHER'?",
-            options = listOf("CHEATER", "REACH", "CHART", "HEAR"),
+            options = listOf("CHEATER", "REACH", "CHAIR", "HEAR"),
             correctOptionIndex = 2,
-            explanation = "The word 'CHART' requires the letter 'T' and an extra letter not matching 'TEACHER'."
+            explanation = "The letter 'I' in 'CHAIR' is not present in the word 'TEACHER'.",
+            uid = "573062860"
         ),
         Question(
             id = 5,
@@ -104,9 +105,10 @@ object Level4Questions {
         Question(
             id = 4,
             questionText = "'TEACHER' शब्द के अक्षरों का उपयोग करके कौन सा शब्द नहीं बनाया जा सकता है?",
-            options = listOf("CHEATER", "REACH", "CHART", "HEAR"),
+            options = listOf("CHEATER", "REACH", "CHAIR", "HEAR"),
             correctOptionIndex = 2,
-            explanation = "'CHART' शब्द में अक्षर नहीं मिलते, अतः यह शब्द नहीं बनाया जा सकता।"
+            explanation = "'CHAIR' में 'I' अक्षर 'TEACHER' शब्द में मौजूद नहीं है, अतः यह शब्द नहीं बनाया जा सकता।",
+            uid = "573062860"
         ),
         Question(
             id = 5,

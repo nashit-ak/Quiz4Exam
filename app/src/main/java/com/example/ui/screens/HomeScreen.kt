@@ -184,25 +184,36 @@ fun HomeScreen(
                 .padding(horizontal = 18.dp)
                 .padding(top = 18.dp, bottom = 16.dp)
         ) {
-            // Greetings Header
-            Text(
-                text = "Welcome Back, Champion! 🚀",
-                style = MaterialTheme.typography.headlineMedium.copy(
-                    fontWeight = FontWeight.ExtraBold,
-                    color = Color(0xFF0D1B3E),
-                    fontSize = 25.sp,
-                    letterSpacing = (-0.5).sp
-                ),
-                modifier = Modifier.testTag("greetings_heading")
-            )
+            // Greetings Header (Single Line with Rocket)
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("greetings_heading")
+            ) {
+                Text(
+                    text = "Welcome Back, Champion!",
+                    style = MaterialTheme.typography.headlineMedium.copy(
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(0xFF0F172A),
+                        fontSize = 24.sp,
+                        letterSpacing = (-0.5).sp
+                    )
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = "🚀",
+                    fontSize = 22.sp
+                )
+            }
 
-            Spacer(modifier = Modifier.height(5.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             Text(
                 text = "What would you like to learn today?",
                 style = MaterialTheme.typography.bodyLarge.copy(
                     color = Color(0xFF64748B),
-                    fontSize = 15.5.sp,
+                    fontSize = 15.sp,
                     fontWeight = FontWeight.Normal
                 ),
                 modifier = Modifier.testTag("greetings_subtitle")
@@ -213,7 +224,7 @@ fun HomeScreen(
             // Card 1: Brain-Matrix (Hero Active Card with Futuristic Sheen Sweep & Pulsing Neon Glow)
             ExamCategoryCard(
                 title = "Brain-Matrix",
-                description = "100 Questions Speed Test covering Mixed Topics & Analytics.",
+                description = "100 Speed Questions across Mixed Topics",
                 iconPainter = painterResource(R.drawable.ic_quiz4exam_logo),
                 iconBackgroundColor = Color.Transparent,
                 iconSize = 40.dp,
@@ -223,7 +234,7 @@ fun HomeScreen(
                 actionButtonColor = Color(0xFF0066FF),
                 actionContentDescription = "Start Brain-Matrix Test",
                 metaItem1 = MetaItem(Icons.Default.Description, "100 Questions"),
-                metaItem2 = MetaItem(Icons.Default.BarChart, "Mixed Difficulty"),
+                metaItem2 = MetaItem(Icons.Default.BarChart, "Mixed Topics"),
                 metaItem3 = MetaItem(Icons.Default.Bolt, "Instant Results"),
                 isSelected = selectedCard == "brain_matrix",
                 enableSheenSweep = true,
@@ -240,7 +251,7 @@ fun HomeScreen(
             // Card 2: State Competitive Exam - Fully active with Jharkhand Map Watermark
             ExamCategoryCard(
                 title = "State Competitive Exam",
-                description = "Prepare for State PSC, Police, Teaching, State Level Exams & more.",
+                description = "Prepare for State PSC, Police, Teaching & more",
                 iconPainter = painterResource(R.drawable.ic_india_3d_states),
                 iconBackgroundColor = Color(0xFFF3F4F6),
                 iconSize = 36.dp,
@@ -250,8 +261,8 @@ fun HomeScreen(
                 badgeTextColor = Color(0xFF0066FF),
                 actionButtonColor = Color(0xFF0066FF),
                 actionContentDescription = "Explore State Competitive Exams",
-                metaItem1 = MetaItem(Icons.AutoMirrored.Filled.MenuBook, "State-wise Content"),
-                metaItem2 = MetaItem(Icons.Default.BarChart, "Bilingual Support"),
+                metaItem1 = MetaItem(Icons.AutoMirrored.Filled.MenuBook, "State Content"),
+                metaItem2 = MetaItem(Icons.Default.BarChart, "Bilingual"),
                 metaItem3 = MetaItem(Icons.Default.Explore, "Explore Now"),
                 isSelected = selectedCard == "state_exam",
                 enableSheenSweep = selectedCard == "state_exam" || selectedCard == null,
@@ -268,7 +279,7 @@ fun HomeScreen(
             // Card 3: Central Competitive Exam
             ExamCategoryCard(
                 title = "Central Competitive Exam",
-                description = "Prepare for UPSC, SSC, Banking, Railways, Defence and more.",
+                description = "Prepare for UPSC, SSC, Banking, Railways & more",
                 iconPainter = painterResource(R.drawable.ic_central_exam_building),
                 iconBackgroundColor = Color(0xFFF3F4F6),
                 iconSize = 34.dp,
@@ -277,7 +288,7 @@ fun HomeScreen(
                 badgeTextColor = Color(0xFF64748B),
                 actionButtonColor = Color(0xFFCBD5E1).copy(alpha = 0.6f),
                 actionContentDescription = "Coming Soon",
-                metaItem1 = MetaItem(Icons.AutoMirrored.Filled.MenuBook, "Multiple Subjects"),
+                metaItem1 = MetaItem(Icons.AutoMirrored.Filled.MenuBook, "All Subjects"),
                 metaItem2 = MetaItem(Icons.Default.BarChart, "Level-wise"),
                 metaItem3 = MetaItem(Icons.Default.Lock, "Coming Soon"),
                 isSelected = selectedCard == "central_exam",
@@ -404,40 +415,39 @@ private fun ExamCategoryCard(
                         )
                     }
 
-                    // Middle (flex: 1, paddingHorizontal: 12) - straight title & compact description
+                    // Middle (flex: 1, priority width) - straight title & compact description
                     Column(
                         modifier = Modifier
                             .weight(1f)
-                            .padding(horizontal = 12.dp)
+                            .padding(start = 10.dp, end = 8.dp)
                     ) {
                         Text(
                             text = title,
                             maxLines = 1,
                             softWrap = false,
-                            overflow = TextOverflow.Ellipsis,
                             style = TextStyle(
-                                fontSize = 16.sp,
+                                fontSize = 14.5.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color(0xFF1E293B)
+                                color = Color(0xFF1E293B),
+                                letterSpacing = (-0.2).sp
                             )
                         )
 
-                        Spacer(modifier = Modifier.height(3.dp))
+                        Spacer(modifier = Modifier.height(2.dp))
 
                         Text(
                             text = description,
                             maxLines = 2,
-                            overflow = TextOverflow.Ellipsis,
                             style = TextStyle(
-                                fontSize = 12.sp,
-                                lineHeight = 16.sp,
+                                fontSize = 11.5.sp,
+                                lineHeight = 15.sp,
                                 color = Color(0xFF64748B),
                                 fontWeight = FontWeight.Medium
                             )
                         )
                     }
 
-                    // Right: Stacked vertically with badge on top and circular action arrow button below (34x34)
+                    // Right: Stacked vertically with compact badge on top and circular action arrow button below (28x28)
                     Column(
                         horizontalAlignment = Alignment.End,
                         verticalArrangement = Arrangement.Center
@@ -446,14 +456,17 @@ private fun ExamCategoryCard(
                             text = badgeText,
                             textColor = badgeTextColor,
                             containerColor = badgeContainerColor,
-                            borderColor = if (isSelected) Color(0xFF93C5FD) else Color.White.copy(alpha = 0.65f)
+                            borderColor = if (isSelected) Color(0xFF93C5FD) else Color.White.copy(alpha = 0.65f),
+                            horizontalPadding = 6.dp,
+                            verticalPadding = 2.dp,
+                            fontSize = 9.5.sp
                         )
 
-                        Spacer(modifier = Modifier.height(6.dp))
+                        Spacer(modifier = Modifier.height(4.dp))
 
                         Glass3DButton(
                             onClick = onClick,
-                            size = 34.dp,
+                            size = 28.dp,
                             buttonColor = actionButtonColor,
                             depthShadowColor = if (isSelected) Color(0x660066FF) else Color(0x330A2540)
                         ) {
@@ -461,7 +474,7 @@ private fun ExamCategoryCard(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                                 contentDescription = actionContentDescription,
                                 tint = Color.White,
-                                modifier = Modifier.size(16.dp)
+                                modifier = Modifier.size(13.dp)
                             )
                         }
                     }
@@ -480,7 +493,7 @@ private fun ExamCategoryCard(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 10.dp),
+                        .padding(top = 8.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -495,7 +508,7 @@ private fun ExamCategoryCard(
 
 /**
  * Meta Badge in a strict horizontal row.
- * Uses maxLines = 1 and softWrap = false to ensure labels like "Explore Now" never wrap or break vertically.
+ * Uses maxLines = 1, softWrap = false without forced ellipsis dots so compact text renders fully.
  */
 @Composable
 private fun MetaBadge(
@@ -511,18 +524,17 @@ private fun MetaBadge(
             imageVector = item.icon,
             contentDescription = null,
             tint = Color(0xFF64748B),
-            modifier = Modifier.size(13.dp)
+            modifier = Modifier.size(12.dp)
         )
-        Spacer(modifier = Modifier.width(4.dp))
+        Spacer(modifier = Modifier.width(3.dp))
         Text(
             text = item.label,
             maxLines = 1,
             softWrap = false,
-            overflow = TextOverflow.Ellipsis,
             style = TextStyle(
-                fontSize = 11.sp,
+                fontSize = 10.sp,
                 fontWeight = FontWeight.SemiBold,
-                color = Color(0xFF334155)
+                color = Color(0xFF64748B)
             )
         )
     }

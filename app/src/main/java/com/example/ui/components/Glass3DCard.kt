@@ -243,29 +243,32 @@ fun GlassPillBadge(
     textColor: Color = Color(0xFF0066FF),
     containerColor: Color = Color.White.copy(alpha = 0.22f),
     borderColor: Color = Color.White.copy(alpha = 0.45f),
+    horizontalPadding: androidx.compose.ui.unit.Dp = 6.dp,
+    verticalPadding: androidx.compose.ui.unit.Dp = 2.dp,
+    fontSize: androidx.compose.ui.unit.TextUnit = 9.5.sp,
     leadingIcon: (@Composable () -> Unit)? = null
 ) {
     androidx.compose.material3.Surface(
         modifier = modifier,
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(10.dp),
         color = containerColor,
         border = BorderStroke(1.dp, borderColor)
     ) {
         androidx.compose.foundation.layout.Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+            modifier = Modifier.padding(horizontal = horizontalPadding, vertical = verticalPadding)
         ) {
             if (leadingIcon != null) {
                 leadingIcon()
-                androidx.compose.foundation.layout.Spacer(modifier = Modifier.width(5.dp))
+                androidx.compose.foundation.layout.Spacer(modifier = Modifier.width(4.dp))
             }
             androidx.compose.material3.Text(
                 text = text,
                 style = androidx.compose.material3.MaterialTheme.typography.labelSmall.copy(
                     color = textColor,
                     fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-                    fontSize = 11.sp,
-                    letterSpacing = 0.5.sp
+                    fontSize = fontSize,
+                    letterSpacing = 0.3.sp
                 )
             )
         }

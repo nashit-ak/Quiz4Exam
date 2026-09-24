@@ -28,11 +28,11 @@ data class Question(
     val uid: String = ""
 ) {
     /**
-     * Always returns a valid 10-digit numeric UID.
-     * If [uid] is a 10-digit numeric string, returns it; otherwise generates a persistent deterministic 10-digit UID.
+     * Always returns a valid numeric UID.
+     * If [uid] is a numeric string (e.g. 573062860 or 10 digits), returns it; otherwise generates a persistent deterministic 10-digit UID.
      */
     val effectiveUid: String
-        get() = if (uid.isNotBlank() && uid.length == 10 && uid.all { it.isDigit() }) {
+        get() = if (uid.isNotBlank() && uid.all { it.isDigit() }) {
             uid
         } else {
             generateDeterministic10DigitUid(id, category, questionText)

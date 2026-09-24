@@ -40,16 +40,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import android.content.Intent
-import android.net.Uri
-import android.widget.Toast
-import com.example.ui.components.GoldenFourDark
-import com.example.ui.components.formatQuiz4ExamHeading
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
 import com.example.BuildConfig
-import com.example.ui.components.AppLogo
 import com.example.ui.components.ExamTopAppBar
 import com.example.ui.theme.CardBorder
 import com.example.ui.theme.NavyPrimary
@@ -89,20 +81,25 @@ fun SettingsScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .verticalScroll(rememberScrollState())
-                .padding(20.dp)
         ) {
-            Text(
-                text = AppStrings.settingsTitle(currentLanguage),
-                style = MaterialTheme.typography.headlineMedium.copy(
-                    fontWeight = FontWeight.Bold,
-                    color = TextPrimaryNavy,
-                    fontSize = 26.sp
-                ),
-                modifier = Modifier.testTag("settings_heading")
-            )
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .padding(20.dp)
+            ) {
+                Text(
+                    text = AppStrings.settingsTitle(currentLanguage),
+                    style = MaterialTheme.typography.headlineMedium.copy(
+                        fontWeight = FontWeight.Bold,
+                        color = TextPrimaryNavy,
+                        fontSize = 26.sp
+                    ),
+                    modifier = Modifier.testTag("settings_heading")
+                )
 
-            Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(20.dp))
 
             // Language Selection Card
             Card(
@@ -273,148 +270,24 @@ fun SettingsScreen(
                     )
                 }
             }
-
-            Spacer(modifier = Modifier.height(20.dp))
-
-            // About & Legal Card with Official App Logo
-            val context = LocalContext.current
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag("settings_about_legal_card"),
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = SurfacePureWhite),
-                border = BorderStroke(1.dp, CardBorder),
-                elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
-            ) {
-                Column(modifier = Modifier.padding(18.dp)) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        AppLogo(size = 44.dp, elevation = 4.dp)
-                        Spacer(modifier = Modifier.width(14.dp))
-                        Column {
-                            Text(
-                                text = formatQuiz4ExamHeading(
-                                    text = "Quiz4Exam",
-                                    baseColor = TextPrimaryNavy,
-                                    goldColor = GoldenFourDark
-                                ),
-                                style = MaterialTheme.typography.titleMedium.copy(
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 17.sp
-                                )
-                            )
-                            Text(
-                                text = AppStrings.brandSubtitle(currentLanguage),
-                                style = MaterialTheme.typography.bodySmall.copy(
-                                    color = TextSecondaryMuted,
-                                    fontSize = 12.sp
-                                )
-                            )
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    // Terms & Conditions link
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(8.dp))
-                            .clickable {
-                                try {
-                                    val intent = Intent(
-                                        Intent.ACTION_VIEW,
-                                        Uri.parse("https://docs.google.com/document/d/1omZEC5mJLX0th8Jb0etljQ91G0zmrf39/edit?usp=drivesdk&ouid=115733834770864901467&rtpof=true&sd=true")
-                                    )
-                                    context.startActivity(intent)
-                                } catch (e: Exception) {
-                                    Toast.makeText(context, "Could not open browser", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                            .padding(vertical = 8.dp, horizontal = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = AppStrings.termsAndConditions(currentLanguage),
-                            style = MaterialTheme.typography.bodyMedium.copy(
-                                color = NavyPrimary,
-                                fontWeight = FontWeight.SemiBold,
-                                textDecoration = TextDecoration.Underline,
-                                fontSize = 14.sp
-                            )
-                        )
-                        Text(
-                            text = "↗",
-                            style = MaterialTheme.typography.bodyMedium.copy(
-                                color = NavyPrimary,
-                                fontWeight = FontWeight.Bold
-                            )
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.height(6.dp))
-
-                    // Privacy Policy link
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(8.dp))
-                            .clickable {
-                                try {
-                                    val intent = Intent(
-                                        Intent.ACTION_VIEW,
-                                        Uri.parse("https://docs.google.com/document/d/1JwjDOi-BvLBeFODMWqQE_Zg618Aq7iL5/edit?usp=drivesdk&ouid=115733834770864901467&rtpof=true&sd=true")
-                                    )
-                                    context.startActivity(intent)
-                                } catch (e: Exception) {
-                                    Toast.makeText(context, "Could not open browser", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                            .padding(vertical = 8.dp, horizontal = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = AppStrings.privacyPolicy(currentLanguage),
-                            style = MaterialTheme.typography.bodyMedium.copy(
-                                color = NavyPrimary,
-                                fontWeight = FontWeight.SemiBold,
-                                textDecoration = TextDecoration.Underline,
-                                fontSize = 14.sp
-                            )
-                        )
-                        Text(
-                            text = "↗",
-                            style = MaterialTheme.typography.bodyMedium.copy(
-                                color = NavyPrimary,
-                                fontWeight = FontWeight.Bold
-                            )
-                        )
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            // App Version Footer
-            Text(
-                text = "Version ${BuildConfig.VERSION_NAME} (Build ${BuildConfig.VERSION_CODE})",
-                style = MaterialTheme.typography.bodySmall.copy(
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = Color(0xFF9CA3AF),
-                    textAlign = TextAlign.Center
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 20.dp)
-                    .testTag("app_version_footer")
-            )
         }
+
+        // App Version Footer - pinned strictly to the bottom of the screen
+        Text(
+            text = "Version ${BuildConfig.VERSION_NAME} (Build ${BuildConfig.VERSION_CODE})",
+            style = MaterialTheme.typography.bodySmall.copy(
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Medium,
+                color = Color(0xFF9CA3AF),
+                textAlign = TextAlign.Center
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp, vertical = 20.dp)
+                .testTag("app_version_footer")
+        )
     }
+}
 }
 
 @Composable
