@@ -1,0 +1,6 @@
+{
+  "name": "Quiz4Exam",
+  "description": "Mobile-friendly offline quiz application for competitive exam reasoning practice with sequential level gating and daily streak tracker.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="36dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Classic Map Outline (FontAwesome5 map / MaterialCommunityIcons map-outline) -->
+    <path
+        android:fillColor="#9CA3AF"
+        android:pathData="M20.5,3 L15,5.1 L9,3 L3.36,4.9 C3.15,4.97 3,5.18 3,5.43 L3,20.5 C3,20.78 3.22,21 3.5,21 L3.66,20.97 L9,18.9 L15,21 L20.64,19.1 C20.85,19.03 21,18.82 21,18.57 L21,3.5 C21,3.22 20.78,3 20.5,3 Z M15,18.85 L9,16.75 L9,5.15 L15,7.25 Z M5,6.47 L7,5.77 L7,17.53 L5,18.23 Z M19,17.53 L17,18.23 L17,6.47 L19,5.77 Z" />
+</vector>

@@ -1,0 +1,46 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <!-- Jharkhand State Map Silhouette Boundary -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M 18,28
+            C 21,24 28,21 36,20
+            C 44,19 50,22 58,21
+            C 65,20 74,15 82,16
+            C 88,17 90,22 88,28
+            C 86,34 83,38 82,44
+            C 81,50 84,54 85,60
+            C 86,66 89,72 87,78
+            C 85,84 76,86 68,85
+            C 60,84 54,92 48,93
+            C 42,94 36,88 32,84
+            C 27,80 25,72 26,65
+            C 27,58 20,54 19,48
+            C 18,42 15,34 18,28 Z" />
+
+    <!-- Internal Topographic / Region Contours for subtle map realism -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.2"
+        android:strokeAlpha="0.4"
+        android:pathData="M 36,20 C 40,32 45,45 48,60 C 50,72 52,85 48,93" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.0"
+        android:strokeAlpha="0.4"
+        android:pathData="M 26,45 C 38,46 54,44 70,42 C 77,41 82,44 82,44" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.0"
+        android:strokeAlpha="0.4"
+        android:pathData="M 28,62 C 38,64 55,62 72,68 C 80,71 87,78 87,78" />
+
+    <!-- Capital City (Ranchi) pin marker dot -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.85"
+        android:pathData="M 52,54 A 2.8,2.8 0 1,1 52,48.4 A 2.8,2.8 0 1,1 52,54 Z" />
+</vector>

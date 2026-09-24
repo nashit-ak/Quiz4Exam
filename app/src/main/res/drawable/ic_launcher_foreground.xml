@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Graduation Cap Top (Diamond) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,32 L84,44 L54,56 L24,44 Z" />
+
+    <!-- Cap Base / Skullcap -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M35,50 L35,63 C35,71 73,71 73,63 L73,50 L54,57 Z" />
+
+    <!-- Cap Interior Cutout -->
+    <path
+        android:fillColor="#0066FF"
+        android:pathData="M40,53 C43,58 65,58 68,53 C68,59 40,59 40,53 Z" />
+
+    <!-- Tassel Ribbon & Bobble hanging from the right -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3.2"
+        android:strokeLineCap="round"
+        android:pathData="M78,47 L78,66" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M75.5,65 L80.5,65 L80.5,72 L75.5,72 Z" />
+</vector>

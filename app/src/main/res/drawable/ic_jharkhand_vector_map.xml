@@ -1,0 +1,55 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="231dp"
+    android:height="272dp"
+    android:viewportWidth="1156"
+    android:viewportHeight="1361">
+
+    <!-- Jharkhand State Full Silhouette Boundary Vector -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M 215,1211
+            L 212,1211
+            C 200,1190 210,1140 220,1090
+            C 228,1040 240,990 235,940
+            C 230,890 215,845 225,790
+            C 235,740 260,700 255,650
+            C 250,600 230,560 235,510
+            C 240,460 265,420 295,380
+            C 335,340 395,320 460,305
+            C 530,290 600,300 670,280
+            C 740,260 810,230 880,210
+            C 940,195 985,215 1010,260
+            C 1030,300 1020,360 1000,420
+            C 980,480 970,540 965,600
+            C 960,660 990,720 1005,780
+            C 1020,840 1055,900 1040,965
+            C 1025,1025 970,1070 910,1095
+            C 850,1120 790,1130 735,1165
+            C 680,1200 630,1260 570,1285
+            C 510,1310 450,1295 400,1265
+            C 350,1235 305,1220 260,1215
+            Z" />
+
+    <!-- District & Topographic Contours -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="12"
+        android:strokeAlpha="0.35"
+        android:pathData="M 460,305 C 500,450 560,620 590,820 C 620,980 640,1160 570,1285" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="10"
+        android:strokeAlpha="0.35"
+        android:pathData="M 255,650 C 400,660 620,630 820,600 C 900,585 965,600 965,600" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="10"
+        android:strokeAlpha="0.35"
+        android:pathData="M 235,940 C 400,920 620,900 820,940 C 930,960 1040,965 1040,965" />
+
+    <!-- Ranchi Plateau Central Marker -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.8"
+        android:pathData="M 600,750 A 28,28 0 1,1 600,694 A 28,28 0 1,1 600,750 Z" />
+</vector>

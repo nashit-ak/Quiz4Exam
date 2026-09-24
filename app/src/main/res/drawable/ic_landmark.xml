@@ -1,0 +1,35 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="36dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Classic Landmark / Government Building (FontAwesome5 landmark / Material bank) -->
+    <!-- Triangular Pediment (Roof) -->
+    <path
+        android:fillColor="#9CA3AF"
+        android:pathData="M12,1 L2,6 L22,6 Z" />
+    <!-- Horizontal beam under roof -->
+    <path
+        android:fillColor="#9CA3AF"
+        android:pathData="M3,7 L21,7 L21,9 L3,9 Z" />
+    <!-- 4 Columns -->
+    <path
+        android:fillColor="#9CA3AF"
+        android:pathData="M4,10 H6 V17 H4 Z" />
+    <path
+        android:fillColor="#9CA3AF"
+        android:pathData="M9,10 H11 V17 H9 Z" />
+    <path
+        android:fillColor="#9CA3AF"
+        android:pathData="M13,10 H15 V17 H13 Z" />
+    <path
+        android:fillColor="#9CA3AF"
+        android:pathData="M18,10 H20 V17 H18 Z" />
+    <!-- Steps Base (Two tiered) -->
+    <path
+        android:fillColor="#9CA3AF"
+        android:pathData="M2,18 L22,18 L22,20 L2,20 Z" />
+    <path
+        android:fillColor="#9CA3AF"
+        android:pathData="M1,21 L23,21 L23,23 L1,23 Z" />
+</vector>

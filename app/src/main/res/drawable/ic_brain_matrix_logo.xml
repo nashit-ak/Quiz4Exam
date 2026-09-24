@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+
+    <!-- Blue Rounded Background (Identical to Quiz4Exam Icon) -->
+    <path
+        android:fillColor="#2563EB"
+        android:pathData="M16,2 L48,2 C56.84,2 62,7.16 62,16 L62,48 C62,56.84 56.84,62 48,62 L16,62 C7.16,62 2,56.84 2,48 L2,16 C2,7.16 7.16,2 16,2 Z" />
+
+    <!-- Graduation Cap Top (Diamond) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M32,17 L50,24.5 L32,32 L14,24.5 Z" />
+
+    <!-- Cap Base / Skullcap -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M21,28.5 L21,36 C21,41 43,41 43,36 L43,28.5 L32,32.5 Z" />
+
+    <!-- Cap Front Cutout -->
+    <path
+        android:fillColor="#2563EB"
+        android:pathData="M24,30.5 C26,33 38,33 40,30.5 C40,34 24,34 24,30.5 Z" />
+
+    <!-- Right Side Hanging Tassel Ribbon & Bobble -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round"
+        android:pathData="M46,26 L46,38" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M44.5,37.5 L47.5,37.5 L47.5,41 L44.5,41 Z" />
+</vector>

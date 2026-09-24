@@ -1,0 +1,43 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+    <!-- Capitol / Parliament Dome & Flag -->
+    <path
+        android:fillColor="#5A6B82"
+        android:pathData="M31,7 h2 v5 h-2 z" />
+    <path
+        android:fillColor="#5A6B82"
+        android:pathData="M33,8 h5 v3 h-5 z" />
+    <path
+        android:fillColor="#5A6B82"
+        android:pathData="M32,12 C24,12 22,21 22,24 h20 C42,21 40,12 32,12 Z" />
+    <!-- Pediment / Architrave -->
+    <path
+        android:fillColor="#5A6B82"
+        android:pathData="M18,25 h28 v4 h-28 z" />
+    <!-- Pillars -->
+    <path
+        android:fillColor="#5A6B82"
+        android:pathData="M20,30 h3 v17 h-3 z" />
+    <path
+        android:fillColor="#5A6B82"
+        android:pathData="M26,30 h3 v17 h-3 z" />
+    <path
+        android:fillColor="#5A6B82"
+        android:pathData="M32,30 h3 v17 h-3 z" />
+    <path
+        android:fillColor="#5A6B82"
+        android:pathData="M38,30 h3 v17 h-3 z" />
+    <path
+        android:fillColor="#5A6B82"
+        android:pathData="M44,30 h3 v17 h-3 z" />
+    <!-- Base Platform -->
+    <path
+        android:fillColor="#5A6B82"
+        android:pathData="M15,48 h34 v4 h-34 z" />
+    <path
+        android:fillColor="#5A6B82"
+        android:pathData="M12,53 h40 v4 h-40 z" />
+</vector>

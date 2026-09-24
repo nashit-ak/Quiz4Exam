@@ -1,0 +1,104 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="42dp"
+    android:height="42dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- Radiating Sunburst / Glow Rays -->
+    <!-- Top Ray -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M23,4 H25 V9 H23 Z" />
+    <!-- Top-Left Ray -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M11.6,9.5 L13,8.1 L16.5,11.6 L15.1,13 Z" />
+    <!-- Top-Right Ray -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M35,8.1 L36.4,9.5 L32.9,13 L31.5,11.6 Z" />
+    <!-- Left Ray -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M5,23 H10 V25 H5 Z" />
+    <!-- Right Ray -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M38,23 H43 V25 H38 Z" />
+
+    <!-- Left Hemisphere (Outline & Folds) -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M22,15
+            C19,14 16,16 15.5,18.5
+            C13,19 12,22 13,24.5
+            C11.5,26.5 12,30 14,31.5
+            C13.5,33.5 15,36 17.5,36.5
+            C19.5,37 21,36 22,35" />
+
+    <!-- Right Hemisphere (Outline & Folds) -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M26,15
+            C29,14 32,16 32.5,18.5
+            C35,19 36,22 35,24.5
+            C36.5,26.5 36,30 34,31.5
+            C34.5,33.5 33,36 30.5,36.5
+            C28.5,37 27,36 26,35" />
+
+    <!-- Internal Gyri / Brain Folds Left -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.0"
+        android:strokeLineCap="round"
+        android:pathData="M16,21 C18,22 19,20 22,21" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.0"
+        android:strokeLineCap="round"
+        android:pathData="M14,27 C17,26 19,28 22,27" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.0"
+        android:strokeLineCap="round"
+        android:pathData="M17,32 C19,31 20,33 22,32" />
+
+    <!-- Internal Gyri / Brain Folds Right -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.0"
+        android:strokeLineCap="round"
+        android:pathData="M32,21 C30,22 29,20 26,21" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.0"
+        android:strokeLineCap="round"
+        android:pathData="M34,27 C31,26 29,28 26,27" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.0"
+        android:strokeLineCap="round"
+        android:pathData="M31,32 C29,31 28,33 26,32" />
+
+    <!-- Vertical Center Divider -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M24,15 L24,35" />
+</vector>
