@@ -46,7 +46,9 @@ import android.widget.Toast
 import com.example.ui.components.GoldenFourDark
 import com.example.ui.components.formatQuiz4ExamHeading
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import com.example.BuildConfig
 import com.example.ui.components.AppLogo
 import com.example.ui.components.ExamTopAppBar
 import com.example.ui.theme.CardBorder
@@ -394,6 +396,23 @@ fun SettingsScreen(
                     }
                 }
             }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // App Version Footer
+            Text(
+                text = "Version ${BuildConfig.VERSION_NAME} (Build ${BuildConfig.VERSION_CODE})",
+                style = MaterialTheme.typography.bodySmall.copy(
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = Color(0xFF9CA3AF),
+                    textAlign = TextAlign.Center
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 20.dp)
+                    .testTag("app_version_footer")
+            )
         }
     }
 }

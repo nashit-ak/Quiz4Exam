@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -64,8 +65,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -205,15 +208,15 @@ fun HomeScreen(
                 modifier = Modifier.testTag("greetings_subtitle")
             )
 
-            Spacer(modifier = Modifier.height(18.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             // Card 1: Brain-Matrix (Hero Active Card with Futuristic Sheen Sweep & Pulsing Neon Glow)
             ExamCategoryCard(
                 title = "Brain-Matrix",
-                description = "100 Questions • Mixed Topics",
+                description = "100 Questions Speed Test covering Mixed Topics & Analytics.",
                 iconPainter = painterResource(R.drawable.ic_quiz4exam_logo),
                 iconBackgroundColor = Color.Transparent,
-                iconSize = 64.dp,
+                iconSize = 40.dp,
                 badgeText = "Let's Go!",
                 badgeContainerColor = Color(0xFFE0EFFF),
                 badgeTextColor = Color(0xFF0066FF),
@@ -232,15 +235,16 @@ fun HomeScreen(
                 testTag = "category_reasoning"
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
-            // Card 2: State Competitive Exam - Fully active and clickable
+            // Card 2: State Competitive Exam - Fully active with Jharkhand Map Watermark
             ExamCategoryCard(
                 title = "State Competitive Exam",
-                description = "Prepare for State PSC, Police,\nTeaching, State Level Exams and more.",
+                description = "Prepare for State PSC, Police, Teaching, State Level Exams & more.",
                 iconPainter = painterResource(R.drawable.ic_india_3d_states),
                 iconBackgroundColor = Color(0xFFF3F4F6),
-                iconSize = 52.dp,
+                iconSize = 36.dp,
+                watermarkPainter = painterResource(R.drawable.ic_jharkhand_watermark),
                 badgeText = "Explore",
                 badgeContainerColor = Color(0xFFE0EFFF),
                 badgeTextColor = Color(0xFF0066FF),
@@ -250,7 +254,7 @@ fun HomeScreen(
                 metaItem2 = MetaItem(Icons.Default.BarChart, "Bilingual Support"),
                 metaItem3 = MetaItem(Icons.Default.Explore, "Explore Now"),
                 isSelected = selectedCard == "state_exam",
-                enableSheenSweep = selectedCard == "state_exam",
+                enableSheenSweep = selectedCard == "state_exam" || selectedCard == null,
                 onClick = {
                     selectedCard = "state_exam"
                     SoundManager.playTap()
@@ -259,15 +263,15 @@ fun HomeScreen(
                 testTag = "category_state_exam"
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
             // Card 3: Central Competitive Exam
             ExamCategoryCard(
                 title = "Central Competitive Exam",
-                description = "Prepare for UPSC, SSC, Banking,\nRailways, Defence and more.",
+                description = "Prepare for UPSC, SSC, Banking, Railways, Defence and more.",
                 iconPainter = painterResource(R.drawable.ic_central_exam_building),
                 iconBackgroundColor = Color(0xFFF3F4F6),
-                iconSize = 48.dp,
+                iconSize = 34.dp,
                 badgeText = "Soon",
                 badgeContainerColor = Color(0xFFF1F5F9),
                 badgeTextColor = Color(0xFF64748B),
@@ -291,7 +295,7 @@ fun HomeScreen(
                 testTag = "category_central_exam"
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(12.dp))
         }
     }
 }
@@ -299,12 +303,8 @@ fun HomeScreen(
 data class MetaItem(val icon: ImageVector, val label: String)
 
 /**
- * Standard Category Card for Brain-Matrix, Central and State Exams:
- * - Pure white card, 16dp rounded corner, 3D elevation (6dp default, 8dp + glow when selected).
- * - Left rounded container with module icon.
- * - Standardized Title followed by Description (SemiBold 600, #374151, 13.5sp, 18sp line height).
- * - Right Badge pill and circular action button.
- * - Bottom row of inline [Icon + Label] elements.
+ * Standard Category Card with uniform compact dimensions, straight titles, 3D frosted glass sheen,
+ * and aspect-ratio-locked vector map watermark.
  */
 @Composable
 private fun ExamCategoryCard(
@@ -318,15 +318,15 @@ private fun ExamCategoryCard(
     enableSheenSweep: Boolean = false,
     onClick: () -> Unit,
     testTag: String,
+    watermarkPainter: Painter? = null,
     iconBackgroundColor: Color = Color(0xFFF3F4F6),
-    iconSize: Dp = 48.dp,
+    iconSize: Dp = 36.dp,
     badgeText: String = "Soon",
     badgeContainerColor: Color = Color(0xFFF1F5F9),
     badgeTextColor: Color = Color(0xFF64748B),
     actionButtonColor: Color = Color(0xFFCBD5E1).copy(alpha = 0.6f),
     actionContentDescription: String = "Coming Soon"
 ) {
-    // Subtle frosted mesh/vertical glass gradient
     val glassCardGradient = Brush.verticalGradient(
         colors = listOf(
             Color(0xFAFFFFFF),
@@ -341,42 +341,59 @@ private fun ExamCategoryCard(
             .testTag(testTag),
         isSelected = isSelected,
         enableSheenSweep = enableSheenSweep,
-        shape = RoundedCornerShape(22.dp),
+        shape = RoundedCornerShape(20.dp),
         containerColor = Color.White.copy(alpha = 0.88f),
         backgroundBrush = glassCardGradient,
-        glassRimColor = Color.White.copy(alpha = 0.85f),
+        glassRimColor = Color.White.copy(alpha = 0.70f),
         neonGlowColor = Color(0xFF0066FF),
-        ambientShadowColor = Color(0x290A2540),
-        defaultElevation = 8.dp,
-        selectedElevation = 10.dp,
-        pressedElevation = 2.5.dp,
+        ambientShadowColor = Color(0x1F0A2540),
+        defaultElevation = 6.dp,
+        selectedElevation = 8.dp,
+        pressedElevation = 2.dp,
         pressedScale = 0.97f,
-        pressedTranslationY = 2.5.dp
+        pressedTranslationY = 2.dp
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 20.dp, vertical = 20.dp)
-        ) {
-            // Main Top/Center Section
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                // Left Icon & Titles
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.weight(1f)
+        Box(modifier = Modifier.fillMaxWidth()) {
+            // Absolute Background Vector Map Watermark (locked aspect ratio, zero touch interception)
+            if (watermarkPainter != null) {
+                Box(
+                    modifier = Modifier
+                        .matchParentSize()
+                        .padding(end = 4.dp),
+                    contentAlignment = Alignment.CenterEnd
                 ) {
+                    Image(
+                        painter = watermarkPainter,
+                        contentDescription = null,
+                        contentScale = ContentScale.Fit, // aspect ratio locked: viewBox 0 0 496 398 preserved
+                        alpha = 0.22f, // subtle white opacity
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .fillMaxWidth(0.50f)
+                    )
+                }
+            }
+
+            // Foreground Card Content: Fixed compact padding 14dp
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(14.dp)
+            ) {
+                // Top Main Row: Icon box, straight title & description, badge + 34x34 arrow button
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    // Left Icon box (52x52, borderRadius 14)
                     Box(
                         modifier = Modifier
-                            .size(64.dp)
+                            .size(52.dp)
                             .background(
                                 color = iconBackgroundColor,
-                                shape = RoundedCornerShape(16.dp)
+                                shape = RoundedCornerShape(14.dp)
                             )
-                            .clip(RoundedCornerShape(16.dp)),
+                            .clip(RoundedCornerShape(14.dp)),
                         contentAlignment = Alignment.Center
                     ) {
                         Image(
@@ -387,107 +404,125 @@ private fun ExamCategoryCard(
                         )
                     }
 
-                    Spacer(modifier = Modifier.width(14.dp))
-
-                    Column {
+                    // Middle (flex: 1, paddingHorizontal: 12) - straight title & compact description
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(horizontal = 12.dp)
+                    ) {
                         Text(
                             text = title,
-                            style = MaterialTheme.typography.titleMedium.copy(
+                            maxLines = 1,
+                            softWrap = false,
+                            overflow = TextOverflow.Ellipsis,
+                            style = TextStyle(
+                                fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color(0xFF0F172A),
-                                fontSize = 17.sp,
-                                letterSpacing = (-0.2).sp
+                                color = Color(0xFF1E293B)
                             )
                         )
+
                         Spacer(modifier = Modifier.height(3.dp))
+
                         Text(
                             text = description,
-                            style = MaterialTheme.typography.bodyMedium.copy(
-                                color = Color(0xFF374151),
-                                fontWeight = FontWeight.SemiBold,
-                                fontSize = 13.5.sp,
-                                lineHeight = 18.sp
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis,
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                lineHeight = 16.sp,
+                                color = Color(0xFF64748B),
+                                fontWeight = FontWeight.Medium
                             )
                         )
                     }
-                }
 
-                Spacer(modifier = Modifier.width(8.dp))
-
-                // Right Badge & Action
-                Column(
-                    horizontalAlignment = Alignment.End,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    // Glass Pill Badge (Explore / Soon / Let's Go!)
-                    GlassPillBadge(
-                        text = badgeText,
-                        textColor = badgeTextColor,
-                        containerColor = badgeContainerColor,
-                        borderColor = if (isSelected) Color(0xFF93C5FD) else Color.White.copy(alpha = 0.65f)
-                    )
-
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    // 3D tactile glass circular arrow button
-                    Glass3DButton(
-                        onClick = onClick,
-                        size = 38.dp,
-                        buttonColor = actionButtonColor,
-                        depthShadowColor = if (isSelected) Color(0x660066FF) else Color(0x330A2540)
+                    // Right: Stacked vertically with badge on top and circular action arrow button below (34x34)
+                    Column(
+                        horizontalAlignment = Alignment.End,
+                        verticalArrangement = Arrangement.Center
                     ) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                            contentDescription = actionContentDescription,
-                            tint = Color.White,
-                            modifier = Modifier.size(18.dp)
+                        GlassPillBadge(
+                            text = badgeText,
+                            textColor = badgeTextColor,
+                            containerColor = badgeContainerColor,
+                            borderColor = if (isSelected) Color(0xFF93C5FD) else Color.White.copy(alpha = 0.65f)
                         )
+
+                        Spacer(modifier = Modifier.height(6.dp))
+
+                        Glass3DButton(
+                            onClick = onClick,
+                            size = 34.dp,
+                            buttonColor = actionButtonColor,
+                            depthShadowColor = if (isSelected) Color(0x660066FF) else Color(0x330A2540)
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+                                contentDescription = actionContentDescription,
+                                tint = Color.White,
+                                modifier = Modifier.size(16.dp)
+                            )
+                        }
                     }
                 }
-            }
 
-            Spacer(modifier = Modifier.height(18.dp))
+                // Bottom Meta Row Hairline Divider: borderTopWidth: 1, borderTopColor: rgba(0,0,0,0.06), marginTop: 10, paddingTop: 10
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp)
+                        .height(1.dp)
+                        .background(Color(0x0F000000))
+                )
 
-            // Bottom Meta Row: Inline Icon + Label
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                InlineMetaTag(metaItem1.icon, metaItem1.label)
-                InlineMetaTag(metaItem2.icon, metaItem2.label)
-                InlineMetaTag(metaItem3.icon, metaItem3.label)
+                // Bottom Meta Row: 3 equal meta badges in a strict horizontal row
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    MetaBadge(metaItem1, modifier = Modifier.weight(1f))
+                    MetaBadge(metaItem2, modifier = Modifier.weight(1f))
+                    MetaBadge(metaItem3, modifier = Modifier.weight(1f))
+                }
             }
         }
     }
 }
 
 /**
- * Inline Meta Tag matching the screenshot:
- * Icon directly beside the text (without boxed chip borders).
+ * Meta Badge in a strict horizontal row.
+ * Uses maxLines = 1 and softWrap = false to ensure labels like "Explore Now" never wrap or break vertically.
  */
 @Composable
-private fun InlineMetaTag(
-    icon: ImageVector,
-    label: String
+private fun MetaBadge(
+    item: MetaItem,
+    modifier: Modifier = Modifier
 ) {
     Row(
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
         Icon(
-            imageVector = icon,
+            imageVector = item.icon,
             contentDescription = null,
-            tint = Color(0xFF475569),
-            modifier = Modifier.size(15.dp)
+            tint = Color(0xFF64748B),
+            modifier = Modifier.size(13.dp)
         )
-        Spacer(modifier = Modifier.width(5.dp))
+        Spacer(modifier = Modifier.width(4.dp))
         Text(
-            text = label,
-            style = MaterialTheme.typography.labelSmall.copy(
-                color = Color(0xFF334155),
+            text = item.label,
+            maxLines = 1,
+            softWrap = false,
+            overflow = TextOverflow.Ellipsis,
+            style = TextStyle(
+                fontSize = 11.sp,
                 fontWeight = FontWeight.SemiBold,
-                fontSize = 11.5.sp
+                color = Color(0xFF334155)
             )
         )
     }

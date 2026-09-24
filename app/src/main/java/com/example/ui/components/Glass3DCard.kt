@@ -59,17 +59,17 @@ fun Glass3DCard(
     enabled: Boolean = true,
     isSelected: Boolean = false,
     enableSheenSweep: Boolean = false,
-    shape: Shape = RoundedCornerShape(22.dp),
+    shape: Shape = RoundedCornerShape(20.dp),
     containerColor: Color = Color.White.copy(alpha = 0.88f),
     backgroundBrush: Brush? = null,
-    glassRimColor: Color = Color.White.copy(alpha = 0.75f),
+    glassRimColor: Color = Color.White.copy(alpha = 0.70f),
     neonGlowColor: Color = Color(0xFF0066FF),
-    ambientShadowColor: Color = Color(0x290A2540),
-    defaultElevation: Dp = 8.dp,
-    selectedElevation: Dp = 10.dp,
-    pressedElevation: Dp = 2.5.dp,
+    ambientShadowColor: Color = Color(0x1F0A2540),
+    defaultElevation: Dp = 6.dp,
+    selectedElevation: Dp = 8.dp,
+    pressedElevation: Dp = 2.dp,
     pressedScale: Float = 0.97f,
-    pressedTranslationY: Dp = 2.5.dp,
+    pressedTranslationY: Dp = 2.dp,
     hasRipple: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable BoxScope.(isPressed: Boolean) -> Unit
@@ -213,7 +213,7 @@ fun Glass3DCard(
                                 val sheenBrush = Brush.linearGradient(
                                     colors = listOf(
                                         Color.Transparent,
-                                        Color.White.copy(alpha = 0.42f),
+                                        Color.White.copy(alpha = 0.40f),
                                         Color.Transparent
                                     ),
                                     start = Offset(startX, startY),
